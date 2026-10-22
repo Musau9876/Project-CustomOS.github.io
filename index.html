@@ -116,8 +116,7 @@
         }
 
         .nav-btn:hover {
-            background: var(--accent-cyan) !important;
-            color: #000000 !important;
+            background: rgba(56, 189, 248, 0.15) !important;
         }
 
         .container {
@@ -351,15 +350,15 @@
     <!-- Fixed Header Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
-            <a onclick="showPage('home')" class="nav-brand">
+            <a href="#home" class="nav-brand">
                 <span>CustomOS</span>
                 <span class="brand-badge code-font">v0.1.4</span>
             </a>
             <ul class="nav-links">
-                <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
-                <li><a onclick="showPage('features')" id="nav-features">Features</a></li>
-                <li><a onclick="showPage('architecture')" id="nav-architecture">Architecture</a></li>
-                <li><a onclick="showPage('preview')" id="nav-preview">Preview</a></li>
+                <li><a href="#home" id="nav-home">Home</a></li>
+                <li><a href="#features" id="nav-features">Features</a></li>
+                <li><a href="#architecture" id="nav-architecture">Architecture</a></li>
+                <li><a href="#preview" id="nav-preview">Preview</a></li>
                 <li><a href="https://github.com/Project-CustomOS/Project-CustomOS" target="_blank" class="nav-btn">GitHub</a></li>
             </ul>
         </div>
@@ -393,7 +392,6 @@
                     </div>
                     <div class="screenshot-title code-font">CustomOS-0_1_4-Screenshot.png</div>
                 </div>
-                <!-- Make sure your screenshot image file is named CustomOS-0_1_4-Screenshot.png and placed in the root directory -->
                 <img src="CustomOS-0_1_4-Screenshot.png" alt="CustomOS v0.1.4 Command Line Screenshot" class="screenshot-img">
             </div>
 
@@ -477,35 +475,37 @@
         </footer>
     </div>
 
-    <!-- JavaScript for View Switching -->
+    <!-- Reliable Hash Router (Works Offline & Online) -->
     <script>
-        function showPage(pageId) {
-            // Hide all page views
-            const pages = document.querySelectorAll('.page-view');
-            pages.forEach(p => p.classList.remove('active-view'));
+        function handleRouting() {
+            let hash = window.location.hash || '#home';
 
-            // Remove active class from all nav links
-            const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach(l => l.classList.remove('active'));
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active-view'));
+            document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
 
-            if (pageId === 'home') {
-                document.getElementById('page-home').classList.add('active-view');
-                document.getElementById('nav-home').classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else if (pageId === 'features') {
-                document.getElementById('page-home').classList.add('active-view');
-                document.getElementById('nav-features').classList.add('active');
-                document.getElementById('features-section').scrollIntoView({ behavior: 'smooth' });
-            } else if (pageId === 'architecture') {
-                document.getElementById('page-home').classList.add('active-view');
-                document.getElementById('nav-architecture').classList.add('active');
-                document.getElementById('architecture-section').scrollIntoView({ behavior: 'smooth' });
-            } else if (pageId === 'preview') {
+            if (hash === '#preview') {
                 document.getElementById('page-preview').classList.add('active-view');
                 document.getElementById('nav-preview').classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (hash === '#features') {
+                document.getElementById('page-home').classList.add('active-view');
+                document.getElementById('nav-features').classList.add('active');
+                document.getElementById('features-section').scrollIntoView({ behavior: 'smooth' });
+            } else if (hash === '#architecture') {
+                document.getElementById('page-home').classList.add('active-view');
+                document.getElementById('nav-architecture').classList.add('active');
+                document.getElementById('architecture-section').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                document.getElementById('page-home').classList.add('active-view');
+                document.getElementById('nav-home').classList.add('active');
+                if (hash === '#home') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             }
         }
+
+        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('DOMContentLoaded', handleRouting);
     </script>
 </body>
 </html>
