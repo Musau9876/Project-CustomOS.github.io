@@ -7,6 +7,7 @@ How To Build CustomOS and the CustomOS bootloader (Windows)
 5. Place all of the .h and .c files into the "files" folder.
 Note: Make sure mingw-w64 is installed to the system PATH! (Windows)
 6. Run the script
-7. Find a way to run the bootx64.efi file while mounting the UefiDisk folder's contents as a virtual disk. I recommend installing QEMU and running the "Run QEMU.cmd" file also included.
+7. Find a way to run the bootx64.efi file. 
+   I recommend installing QEMU and running the "Run QEMU.cmd" file also included, because it works perfectly.
 
-8. Launch the VM, and it should be self-explanatory from there.
+8. Launch the VM (preferably by using the Run QEMU.cmd file listed above), and it should be self-explanatory from there.
